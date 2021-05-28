@@ -55,6 +55,12 @@ The following steps are also relevant if we had many more hidden layers (deep) a
 ### Forward propagation Calculations: 
 
 **Forward prop - Hidden Layer-1**
+
+
+$$
+
+$$
+
 $$ {align*}
 \\
 \begin{align*}
