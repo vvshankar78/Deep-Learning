@@ -16,15 +16,15 @@ This exercise is primarily focused on understanding the math and logic behind ho
 
 The architecture used for example problem solved is a regression problem with architecture consisting of 2 hidden layers and 2 neurons per hidden layer. 
 
-![image-20210526205650395](C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210526205650395.png)
+
+
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/Neural_Network-1.png?raw=true" style="zoom: 50%;" />
 
 
 
 ## Forward propagation
 
-
-
-<img src="C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210527074436721.png" alt="image-20210527074436721" style="zoom:50%;" />
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/Neural_Network-2.jpg?raw=true" style="zoom: 50%;" />
 
 
 
@@ -48,11 +48,7 @@ The following steps are also relevant if we had many more hidden layers (deep) a
 
 
 
-<img src="C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210526201059293.png" alt="image-20210526201059293" style="zoom: 35%;" />
-
-
-
-
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/Loss%20Function.jpg?raw=true" style="zoom: 67%;" />
 
 
 
@@ -108,7 +104,7 @@ The below figure shows, forward propagation is applied to a sample data of (inpu
 
 
 
-![image-20210527081734097](C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210527081734097.png)
+![image-20210527081734097](https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/Calculation-1.png?raw=true)
 
 
 
@@ -124,7 +120,7 @@ Now that we have performed one step of forward propagation and calculated the Er
 
 
 
-<img src="C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210527084745924.png" alt="image-20210527084745924" style="zoom:50%;" />
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/back_prop_intuition.png?raw=true" style="zoom:50%;" />
 
 
 
@@ -132,13 +128,13 @@ Now that we have performed one step of forward propagation and calculated the Er
 
 
 
-<img src="C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210527090758683.png" alt="image-20210527090758683" style="zoom:67%;" />
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/image-20210527090758683.png?raw=true" style="zoom:67%;" />
 
 ### Chain Rule :
 
 Chain rule plays an important role in propagating backwards towards the weights with respect to the loss. The intuition of chain role is shown in the figure below. 
 
-<img src="C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210526211626411.png" alt="image-20210526211626411" style="zoom: 50%;" />
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/image-20210526211626411.png?raw=true" style="zoom: 50%;" />
 
 
 
@@ -222,7 +218,7 @@ Hence, \\
 ∂E/∂w5  =(out_o1 - t1) * [ out_o1 * (1 -out_o1) ] * [out_h1]
 \\
 $$
-<img src="C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210528055556049.png" alt="image-20210528055556049" style="zoom: 50%;" />
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/image-20210528055556049.png?raw=true" style="zoom: 50%;" />
 
 
 
@@ -325,9 +321,9 @@ The calculation table shows the back propagation as described above for the exam
 
  Each row (epoch) is a repeat cycle of forward propagation --> prediction -> loss calculation -> back propagation -> weights update and move to next row repeating the same. 
 
-![image-20210528065725716](C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210528065725716.png)
 
 
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/image-20210528065725716.png?raw=true" style="zoom: 100%;" />
 
 ### Working with Learning Rates
 
@@ -337,7 +333,7 @@ As seen in the below table, higher learning rate (2.0) helps to converge to low 
 
 the learning rate convergence is specific to this example, this does not imply that we have to go with higher learning rates. There are various techniques  adopted to arrive at a best learning rate depending on the complexity of the data and model that we are building. 
 
- <img src="C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210528070301014.png" alt="image-20210528070301014" style="zoom: 80%;" />
+ <img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/image-20210528070301014.png?raw=true" style="zoom: 80%;" />
 
 
 
@@ -345,7 +341,7 @@ the learning rate convergence is specific to this example, this does not imply t
 
 ## Gradient Descent Algorithm
 
-![image-20210528074303893](C:\Users\vvsha\AppData\Roaming\Typora\typora-user-images\image-20210528074303893.png)
+<img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/image-20210528074303893.png?raw=true" style="zoom: 100%;" />
 
 
 
