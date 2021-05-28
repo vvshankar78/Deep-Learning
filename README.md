@@ -56,47 +56,47 @@ The following steps are also relevant if we had many more hidden layers (deep) a
 
 **Forward prop - Hidden Layer-1**
 
+```
+h1 &= w1* i1 + w2 * i2						(1) 
+h2 &= w3 * i1 + w4 * i2					 	(2) 
+out_h1 &= σ (h1)						 	(3) 
+out_h2 &= σ (h2)						 	(4)
+```
 
-$$
 
-$$
 
-$$ {align*}
-\\
-\begin{align*}
-h1 &= w1* i1 + w2 * i2					&- 	(1) \\
-h2 &= w3 * i1 + w4 * i2					&- 	(2) \\
-out_h1 &= σ (h1)						&- 	(3) \\
-out_h2 &= σ (h2)						&- 	(4)\\
-\end{align*}
-$$
 **Forward prop - Hidden Layer-2**
+
+```
+o1 &= w5 * out_h1 + w6 * out_h2			 	(5) 
+o1 &= w7 * out_h1 + w8 * out_h2			 	(6) 
+out_o1 &= σ (h1)						 	(7) 
+out_o2 &= σ (h2)							(8)
+```
+
+
 $$
 \\
 \begin{align*}
-o1 &= w5 * out_h1 + w6 * out_h2					&- 	(5) \\
-o1 &= w7 * out_h1 + w8 * out_h2					&- 	(6) \\
-out_o1 &= σ (h1)						&- 	(7) \\
-out_o2 &= σ (h2)						&- 	(8)
+
 \end{align*}
 $$
 **Forward prop - Loss Calculation**
-$$
-\begin{align*}
-E1 	&= ½ * (t1 - out_o1)2  = ½ * (t1 - σ(o1))2		&- 	(9)\\
-E2 	&= ½ * (t2 - out_o2)2  = ½ * (t2 - σ(o2))2  	&	-	(10)\\
-...\\
 
+```
+E1 	= ½ * (t1 - out_o1)2  = ½ * (t1 - σ(o1))2	  (9)
+E2 	= ½ * (t2 - out_o2)2  = ½ * (t2 - σ(o2))2  	 (10)
 
-&Total Loss \\
-E_Total &= E = E1 + E2
-\end{align*}
-$$
+Total Loss 
+E_Total = E = E1 + E2
+```
 
-$$
-Sigmoid function \\
+```
+Sigmoid function 
 σ (x) = 1/(1+e-x)
-$$
+```
+
+
 
 ### Solved Example: 
 
@@ -149,11 +149,15 @@ Chain rule plays an important role in propagating backwards towards the weights 
 Given our network having 2 hidden layers, we would be calculating the derivative of the Error with respect to each of the weights (𝟃E/𝟃w). This provides the update each of our weights in the direction of minimizing the loss. 
 
 The back propagation is calculated backwards, starting from loss , calculating the derivatives of outputs of last hidden layer and then calculating the weights of last hidden layer  (𝟃E/𝟃w5, 𝟃E/𝟃w6, 𝟃E/𝟃w7, 𝟃E/𝟃w8), and then further moving towards the first hidden layer, calculating the derivatives of the neurons and then weights of first hidden layer (𝟃E/𝟃w1, 𝟃E/𝟃w2, 𝟃E/𝟃w3, 𝟃E/𝟃w4). Having calculated the derivative of total error with respect to each weights, the weights are updated with the help of learning rate function.
-$$
-w = w - η*𝟃E/𝟃w \\
-.\\
+
+```
+w = w - η*𝟃E/𝟃w 
+
 η - Learning.rate
-$$
+```
+
+
+
 Having updated the weights, the cycle of forward propagation is performed to calculate the new errors and predictions. This cycle is repeated multiple times till the error is no longer reducing (global minima)
 
  
@@ -165,156 +169,170 @@ Before we could proceed with the back propagation, we would be formulating few o
 
 
 ***Derivates Sigmoid***
-$$
-\begin{align*}
-σ(x) &= 1/( 1 + e^{-x})  \\
-σ’(x) &= σ(x) ( 1- σ(x)) \ -(11)\\
-\end{align*}
-$$
+
+```
+σ(x) &= 1/( 1 + e^{-x})  
+σ’(x) &= σ(x) ( 1- σ(x))   -(11)
+```
+
+
+
 
 
 ***Derivates Hidden Layer-1***
-$$
-o1 = w5 * out_h1 + w6 * out_h2	\\ 
-o2 = w7 * out_h1 + w8 * out_h2	\\ 
-...\\
-\begin{align*}
-𝟃o1/𝟃w5 &= out_h1  \\
-𝟃o1/𝟃w6 &= out_h2  &-(12) \\
-...\\
-𝟃o2/𝟃w7 &= out_h1  \\
-𝟃o2/𝟃w8 &= out_h2  &-(13)
-\end{align*}
-$$
+
+```
+o1 = w5 * out_h1 + w6 * out_h2	 
+o2 = w7 * out_h1 + w8 * out_h2	
+...
+𝟃o1/𝟃w5 = out_h1  
+𝟃o1/𝟃w6 = out_h2  -(12) 
+...
+𝟃o2/𝟃w7 = out_h1  
+𝟃o2/𝟃w8 = out_h2  -(13)
+```
+
 
 
 ***Derivates Hidden Layer-2***
-$$
-Derivative-Linear\ Outputs \\
 
-Hidden -Layer:1\\
-...\\
-h1 = w1 * i1 + w2 * i2 	\\ 
-h2 = w3 * i1 + w4 * i2	\\ 
-...\\
-\begin{align*}
-𝟃h1/𝟃w1 &= i1  \\
-𝟃h1/𝟃w2 &= i2      \                &-(14) \\
-...\\
-𝟃h2/𝟃w3 &= i1  \\
-𝟃h2/𝟃w4 &= i2  \ &-(15)
-\end{align*}
-$$
+```
+h1 = w1 * i1 + w2 * i2 	 
+h2 = w3 * i1 + w4 * i2	
+...
+𝟃h1/𝟃w1 &= i1  
+𝟃h1/𝟃w2 &= i2    -(14) 
+...
+𝟃h2/𝟃w3 &= i1  
+𝟃h2/𝟃w4 &= i2     -(15)
+```
+
 
 
 ***Derivate of 𝟃E/𝟃w5***
-$$
-\begin{align*}
-𝟃E/𝟃w5  &= 𝟃E1/𝟃w5 + 𝟃E2/𝟃w5\\
-&= 𝟃E1/𝟃w5  + 0	\\
-&= -1 * (t1 - out_o1) * 𝟃(σ(o1))/𝟃w5  \\
-&= (out_o1 - t1) * [𝟃(σ(o1))/𝟃o1] * [𝟃o1/𝟃w5 ]   &- By \ Chain Rule \\
-&= (out_o1 - t1) * [ σ(o1) * (1 - σ(o1)) ] * [out_h1]	&- ref. (11)\  and\  (13)\\
-&= (out_o1 - t1) * [ out_o1 * (1 - out_o1) ] * [out_h1] &- subst\  Values\  from\  (7)
-\end{align*}
-$$
 
-$$
-Hence, \\
+```
+𝟃E/𝟃w5  = 𝟃E1/𝟃w5 + 𝟃E2/𝟃w5
+		= 𝟃E1/𝟃w5  + 0	
+		= -1 * (t1 - out_o1) * 𝟃(σ(o1))/𝟃w5  
+		= (out_o1 - t1) * [𝟃(σ(o1))/𝟃o1] * [𝟃o1/𝟃w5 ]   - By  Chain Rule 
+		= (out_o1 - t1) * [ σ(o1) * (1 - σ(o1)) ] * [out_h1]	- ref. (11) and (13)
+		= (out_o1 - t1) * [ out_o1 * (1 - out_o1) ] * [out_h1] - subst  Values  from  (7)
+		
+Hence, 
 ∂E/∂w5  =(out_o1 - t1) * [ out_o1 * (1 -out_o1) ] * [out_h1]
-\\
-$$
+```
+
+
+
 <img src="https://github.com/MittalNeha/Extensive_Vision_AI6/blob/main/week4/images/image-20210528055556049.png?raw=true" style="zoom: 50%;" />
 
 
 
 ***Similarly, The derivatives for other weights (𝟃E/𝟃w6, 𝟃E/𝟃w7, 𝟃E/𝟃w8),in this layer can be derived -*** 
-$$
-∂E/∂w6  =(out_o1 - t1) * [ out_o1 * (1 -out_o1) ] * [out_h2] \\
-∂E/∂w7  =(out_o2 - t2) * [ out_o2 * (1 -out_o2) ] * [out_h1] \\
+
+```
+∂E/∂w6  =(out_o1 - t1) * [ out_o1 * (1 -out_o1) ] * [out_h2]
+∂E/∂w7  =(out_o2 - t2) * [ out_o2 * (1 -out_o2) ] * [out_h1]
 ∂E/∂w8  =(out_o2 - t2) * [ out_o2 * (1 -out_o2) ] * [out_h2]
-$$
+```
+
 
 
 ***Further, going backwards to calculate  (𝟃E/𝟃w1, 𝟃E/𝟃w2, 𝟃E/𝟃w3, 𝟃E/𝟃w4)***
+
+```
+Derive - 𝟃E/𝟃w1 
+𝟃E/𝟃w1  = 𝟃E1/𝟃w1 + 𝟃E2/𝟃w1 															  - Substitution values from (9) and (10)
+		= {-1 * (t1 - out_o1) * 𝟃(out_o1)/𝟃w1} + { -1 * (t2 - out_o2) * 𝟃(out_o2)/𝟃w1 } - (16)
+```
+
+
 $$
 \begin{align*}
-Derive \ &-\ 𝟃E/𝟃w1 \\
-...\\
-𝟃E/𝟃w1  &= 𝟃E1/𝟃w1 + 𝟃E2/𝟃w1 		& Substitution values from (9) and (10)\\
-		&= {-1 * (t1 - out_o1) * 𝟃(out_o1)/𝟃w1} + { -1 * (t2 - out_o2) * 𝟃(out_o2)/𝟃w1 }  &- (16)
+
 \end{align*}
 $$
-
 
 ***Derivation of 𝟃(out_o1)/𝟃w1 and 𝟃(out_o2)/𝟃w1***
 
-
-$$
-\begin{align*}
-𝟃(out_o1)/𝟃w1  &= 𝟃(σ(o1))/𝟃o1 * 𝟃o1/𝟃w1  				\\
- -Using (11), we\  get\\
-		&= [ σ(o1) * (1 - σ(o1)) ] * 𝟃o1/𝟃w1 			&- (17)\\
- 𝟃o1/𝟃w1	&= w5 * 𝟃out_h1/𝟃w1 + w6 * 𝟃out_h2/𝟃w1	\\
+```
+𝟃(out_o1)/𝟃w1 = 𝟃(σ(o1))/𝟃o1 * 𝟃o1/𝟃w1  			
+-Using (11), we get
+			  = [ σ(o1) * (1 - σ(o1)) ] * 𝟃o1/𝟃w1 	  									   		 (17)
+ 𝟃o1/𝟃w1	    = w5 * 𝟃out_h1/𝟃w1 + w6 * 𝟃out_h2/𝟃w1	
  
- - Using (1)\\
-		&= [w5 * 𝟃[σ(h1)]/𝟃w1] + [w6 * 𝟃[σ(h2)]/𝟃w1]\\
-		&= [w5 * 𝟃(σ(h1))/𝟃h1 * 𝟃h1/𝟃w1] + [w6 * 𝟃(σ(h2))/𝟃h2 * 𝟃h2/𝟃w1] - By chain rule\\
-		&= [w5 * σ(h1) * (1 - σ(h1)) * i1] + [w6 * σ(h2) * (1 - σ(h2)) * 0]	\\
-- Using (11)\  and\  (14)\\
-		&= [w5 * σ(h1) * (1 - σ(h1)) * i1] + 0			&- (18)\\
+ - Using (1)
+			  = [w5 * 𝟃[σ(h1)]/𝟃w1] + [w6 * 𝟃[σ(h2)]/𝟃w1]
+			  = [w5 * 𝟃(σ(h1))/𝟃h1 * 𝟃h1/𝟃w1] + [w6 * 𝟃(σ(h2))/𝟃h2 * 𝟃h2/𝟃w1] - By chain rule
+			  = [w5 * σ(h1) * (1 - σ(h1)) * i1] + [w6 * σ(h2) * (1 - σ(h2)) * 0]	
+- Using (11) and (14)
+			  = [w5 * σ(h1) * (1 - σ(h1)) * i1] + 0			 										(18)
+			  
+Similarly
+𝟃(out_o2)/𝟃w1 = 𝟃(σ(o2))/𝟃o2 * 𝟃o2/𝟃w1
+			  = [ σ(o2) * (1 - σ(o2)) ] * 𝟃o2/𝟃w1 			  									   (19)
+𝟃(o2)/𝟃w1 	= w7 * 𝟃out_h1/𝟃w1 + w8 * 𝟃out_h2/𝟃w1
+		      =  [w7 * σ(h1) * (1 - σ(h1)) * i1]  + 0												 (20)
+```
 
-\end{align*}
-$$
+
 
 $$
-Similarly\\
 \begin{align*}
 
-𝟃(out_o2)/𝟃w1 &= 𝟃(σ(o2))/𝟃o2 * 𝟃o2/𝟃w1\\
-		&= [ σ(o2) * (1 - σ(o2)) ] * 𝟃o2/𝟃w1 			&- (19)\\
-𝟃(o2)/𝟃w1 	&= w7 * 𝟃out_h1/𝟃w1 + w8 * 𝟃out_h2/𝟃w1\\
-		&=  [w7 * σ(h1) * (1 - σ(h1)) * i1]  + 0			&- (20)\\
+
 \end{align*}
 $$
+
 
 
 ***Finally here comes  𝟃E/𝟃w1, 𝟃E/𝟃w2, 𝟃E/𝟃w3, 𝟃E/𝟃w4***
+
+```
+Substituting (17), (18), (19), (20) into (16), we get
+𝟃E/𝟃w1 = { -1 * (t1 - out_o1) * [ σ(o1) * (1 - σ(o1)) ] * w5 * σ(h1) * (1 - σ(h1)) * i1} +
+  	     { -1 * (t2 - out_o2) * [ σ(o2) * (1 - σ(o2)) ] * w7 * σ(h1) * (1 - σ(h1)) * i1 }
+```
+
+
 $$
 \begin{align*}
-Substituting (17), (18), (19), (20) into (16), we \ get\\
-𝟃E/𝟃w1 = \  &{ -1 * (t1 - out_o1) * [ σ(o1) * (1 - σ(o1)) ] * w5 * σ(h1) * (1 - σ(h1)) * i1}\ +\\
-  	    &{ -1 * (t2 - out_o2) * [ σ(o2) * (1 - σ(o2)) ] * w7 * σ(h1) * (1 - σ(h1)) * i1 }\\
+
 
 \end{align*}
 $$
-
 
 **Taking out the common part of substitution and applying similar calculations for other weights in this layer. **
-$$
-\begin{align*}
-𝟃E/𝟃w1 = &out_h1 * (1 - out_h1) * i1  \ * \\
-&		     { (out_o1 - t1) * out_o1* (1 - out_o1) * w5  + (out_o2 - t2) * out_o2 * (1 - out_o2) * w7 }\\
-𝟃E/𝟃w2 = &out_h1 * (1 - out_h1) * i2  * \\
-		  &   { (out_o1 - t1) * out_o1* (1 - out_o1) * w5  + (out_o2 - t2) * out_o2 * (1 - out_o2) * w7 }\\
 
-𝟃E/𝟃w3 = &out_h2 * (1 - out_h2) * i1  * \\
-		  &   { (out_o1 - t1) * out_o1* (1 - out_o1) * w6  + (out_o2 - t2) * out_o2 * (1 - out_o2) * w8 }\\
+```
+𝟃E/𝟃w1 = out_h1 * (1 - out_h1) * i1  * 
+	     { (out_o1 - t1) * out_o1* (1 - out_o1) * w5  + (out_o2 - t2) * out_o2 * (1 - out_o2) * w7 }
+𝟃E/𝟃w2 = out_h1 * (1 - out_h1) * i2  * 
+	     { (out_o1 - t1) * out_o1* (1 - out_o1) * w5  + (out_o2 - t2) * out_o2 * (1 - out_o2) * w7 }
 
-𝟃E/𝟃w4 = &out_h2 * (1 - out_h2) * i2  * \\
-		 &    { (out_o1 - t1) * out_o1* (1 - out_o1) * w6  + (out_o2 - t2) * out_o2 * (1 - out_o2) * w8 }\\
-\end{align*}
-$$
+𝟃E/𝟃w3 = out_h2 * (1 - out_h2) * i1  * 
+		 { (out_o1 - t1) * out_o1* (1 - out_o1) * w6  + (out_o2 - t2) * out_o2 * (1 - out_o2) * w8 }
+
+𝟃E/𝟃w4 = out_h2 * (1 - out_h2) * i2  * 
+		 { (out_o1 - t1) * out_o1* (1 - out_o1) * w6  + (out_o2 - t2) * out_o2 * (1 - out_o2) * w8 }
+```
+
+
 
 
 ### Weights Update and Learning rate: 
 
 The individual weights are updated by subtracting the initial weights or weights from previous epoch, using the derivative of error w.r.t each weights. ***Important note:*** The weights are updated individually, based on the assumption that only one weight is updated while others are kept constant. 
-$$
-w = w - η*𝟃E/𝟃w \\
-.\\
+
+```
+w = w - η*𝟃E/𝟃w 
+
 η - Learning.rate
-$$
+```
+
+
+
 The learning rate is an important hyper parameter that plays a role of how fast or slow we would want the weight update step to be. In this solved example, we show the loss reduction based on different learning rates as well. 
 
 
